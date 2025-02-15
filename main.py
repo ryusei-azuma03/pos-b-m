@@ -17,7 +17,7 @@ origins = [
     "https://localhost:3000",
     "http://192.168.10.102:3000",
     "https://192.168.10.102:3000",
-    "https://tech0-gen8-step4-pos-app-39.azurewebsites.net"
+    "https://tech0-gen8-step4-pos-app-67.azurewebsites.net"
     # 必要に応じて他のドメインも追加
 ]
 
