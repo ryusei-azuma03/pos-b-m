@@ -170,7 +170,7 @@ def delete_transaction_detail(trd_id: int, dtl_id: int, db: Session = Depends(ge
 @app.get("/api/products-by-code/{code}", response_model=schemas.Product)
 def get_product_by_code(code: str, db: Session = Depends(get_db)):
     """
-    商品コード(code)で商品マスタ(m_product_matsuda)を検索し、
+    商品コード(code)で商品マスタ(m_product_azu)を検索し、
     該当商品を返す。見つからなければ404エラー。
     """
     product = db.query(models.MProductMatsuda).filter(models.MProductMatsuda.CODE == code).first()

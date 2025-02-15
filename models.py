@@ -6,7 +6,7 @@ from sqlalchemy.orm import relationship, declarative_base
 Base = declarative_base()
 
 class MProductMatsuda(Base):
-    __tablename__ = "m_product_matsuda"
+    __tablename__ = "m_product_azu"
 
     PRD_ID = Column(Integer, primary_key=True, nullable=False)
     CODE   = Column(CHAR(13), nullable=False)
@@ -18,7 +18,7 @@ class MProductMatsuda(Base):
 
 
 class TransactionsMatsuda(Base):
-    __tablename__ = "transactions_matsuda"
+    __tablename__ = "m_transaction_azu"
 
     TRD_ID    = Column(Integer, primary_key=True, autoincrement=True)
     DATETIME  = Column(TIMESTAMP, nullable=False)
@@ -32,11 +32,11 @@ class TransactionsMatsuda(Base):
 
 
 class TransactionDetailsMatsuda(Base):
-    __tablename__ = "transaction_details_matsuda"
+    __tablename__ = "m_transaction_detail_azu"
 
-    TRD_ID    = Column(Integer, ForeignKey("transactions_matsuda.TRD_ID", ondelete="CASCADE"), primary_key=True)
+    TRD_ID    = Column(Integer, ForeignKey("m_transaction_azu.TRD_ID", ondelete="CASCADE"), primary_key=True)
     DTL_ID    = Column(Integer, primary_key=True, nullable=False)
-    PRD_ID    = Column(Integer, ForeignKey("m_product_matsuda.PRD_ID", ondelete="RESTRICT"), nullable=False)
+    PRD_ID    = Column(Integer, ForeignKey("m_product_azu.PRD_ID", ondelete="RESTRICT"), nullable=False)
     PRD_CODE  = Column(CHAR(13),  nullable=False)
     PRD_NAME  = Column(String(50), nullable=False)
     PRD_PRICE = Column(Integer,    nullable=False)
