@@ -155,11 +155,12 @@ def delete_transaction_detail(trd_id: int, dtl_id: int, db: Session = Depends(ge
     # 明細削除
     db.delete(detail)
 
-    # 合計金額を再集計 (差分計算でも良い)
+    # 合計金額を再集計 (単価 × 数量を考慮)
     if tran:
-        sum_price = db.query(func.sum(models.TransactionDetailsMatsuda.PRD_PRICE)) \
-                      .filter_by(TRD_ID=trd_id).scalar()
-        tran.TOTAL_AMT = sum_price if sum_price else 0
+    sum_price = db.query(func.sum(models.TransactionDetailsMatsuda.PRD_PRICE * models.TransactionDetailsMatsuda.QUANTITY)) \
+                .filter_by(TRD_ID=trd_id).scalar()
+    tran.TOTAL_AMT = sum_price if sum_price else 0
+
 
     db.commit()
     return {"detail": "Detail deleted."}
